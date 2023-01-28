@@ -31,6 +31,7 @@ min_volume = volume_range[0]
 max_volume = volume_range[1]
 
 volume_bar = 400
+volume_percentage = 0
 
 # volume.SetMasterVolumeLevel(-5.0, None)
 
@@ -66,11 +67,13 @@ while True:
         
         vol = np.interp(length, [30, 160], [min_volume, max_volume])
         volume_bar = np.interp(length, [30, 160], [400, 150])
+        volume_percentage = np.interp(length, [30, 160], [0, 100])
         # print(vol)
         volume.SetMasterVolumeLevel(vol, None)
     
     cv2.rectangle(img, (50, 150), (85, 400), (0, 255, 0), 3)
     cv2.rectangle(img, (50, int(volume_bar)), (85, 400), (0, 255, 0), cv2.FILLED)
+    cv2.putText(img, f'{int(volume_percentage)}%', (40, 450), cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 2)
     
     current_time = time.time()
     fps = 1 / (current_time - previous_time)
