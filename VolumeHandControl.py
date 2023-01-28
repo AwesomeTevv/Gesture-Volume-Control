@@ -2,6 +2,7 @@ import cv2
 import time
 import numpy as np
 import HandTrackingModule as htm
+import math
 
 cam_width = 1280
 cam_height = 720
@@ -34,6 +35,11 @@ while True:
         cv2.line(img, (x1, y1), (x2, y2), (255, 255, 0), 3)
         
         cv2.circle(img, (cx, cy), 10, (255, 255, 0), cv2.FILLED)
+        
+        length = math.hypot(x2 - x1, y2 - y1)
+        
+        if length < 20:
+            cv2.circle(img, (cx, cy), 10, (0, 255, 0), cv2.FILLED)
     
     current_time = time.time()
     fps = 1 / (current_time - previous_time)
