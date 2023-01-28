@@ -26,10 +26,14 @@ while True:
         x1, y1 = landmark_list[4][1], landmark_list[4][2]
         x2, y2 = landmark_list[8][1], landmark_list[8][2]
         
+        cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
+        
         cv2.circle(img, (x1, y1), 10, (255, 255, 0), cv2.FILLED)
         cv2.circle(img, (x2, y2), 10, (255, 255, 0), cv2.FILLED)
         
         cv2.line(img, (x1, y1), (x2, y2), (255, 255, 0), 3)
+        
+        cv2.circle(img, (cx, cy), 10, (255, 255, 0), cv2.FILLED)
     
     current_time = time.time()
     fps = 1 / (current_time - previous_time)
