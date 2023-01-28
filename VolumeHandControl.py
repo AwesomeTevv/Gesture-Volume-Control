@@ -30,7 +30,7 @@ volume_range = volume.GetVolumeRange()
 min_volume = volume_range[0]
 max_volume = volume_range[1]
 
-volume.SetMasterVolumeLevel(-5.0, None)
+# volume.SetMasterVolumeLevel(-5.0, None)
 
 while True:
     success, img = cap.read()
@@ -56,10 +56,14 @@ while True:
         if length < 30:
             cv2.circle(img, (cx, cy), 10, (0, 255, 0), cv2.FILLED)
         
-        # Hand range: 30 - 170
+        # Hand range: 30 - 160
         # Volume range: -74.0 - 0.0
         
-        volume = np.interp(length, [30, 170], [min_volume, max_volume])
+        vol = np.interp(length, [30, 160], [min_volume, max_volume])
+        # print(vol)
+        volume.SetMasterVolumeLevel(vol, None)
+    
+    cv2.rectangle(img, (50, 150), (85, 400), (0, 255, 0), 3)
     
     current_time = time.time()
     fps = 1 / (current_time - previous_time)
