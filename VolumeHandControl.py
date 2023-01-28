@@ -20,7 +20,7 @@ while True:
     fps = 1 / (current_time - previous_time)
     previous_time = current_time
     
-    cv2.putText(img, f'fps: {int(fps)}', (50, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 255, 255), 3)
+    cv2.putText(img, f'fps: {int(fps)}', (20, 50), cv2.FONT_HERSHEY_PLAIN, 2, (255, 255, 255), 2)
     
     cv2.imshow("Image", img)
     cv2.waitKey(1)
