@@ -53,8 +53,13 @@ while True:
         
         length = math.hypot(x2 - x1, y2 - y1)
         
-        if length < 20:
+        if length < 30:
             cv2.circle(img, (cx, cy), 10, (0, 255, 0), cv2.FILLED)
+        
+        # Hand range: 30 - 170
+        # Volume range: -74.0 - 0.0
+        
+        volume = np.interp(length, [30, 170], [min_volume, max_volume])
     
     current_time = time.time()
     fps = 1 / (current_time - previous_time)
